@@ -43,12 +43,10 @@ object ClassifyMailWithSVMWithSGD {
 
     val predictionAndLabel = test.map(p => (model.predict(p.features), p.label))
 
-    //pas bien compris les metrics
     val metrics = new BinaryClassificationMetrics(predictionAndLabel)
 
     val accuracy = 1.0 * predictionAndLabel.filter(x => x._1 == x._2).count() / test.count()
 
-    // mauvaise accuracy : 0.39
     println("accuracy " + accuracy)
     println("metrics " + metrics.areaUnderPR())
     println("metrics " + metrics.areaUnderROC())
